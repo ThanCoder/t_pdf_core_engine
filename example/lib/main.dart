@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:t_pdf_core_engine/t_pdf_core_engine.dart';
+import 'package:t_pdf_core_engine/t_pdf_core_thumbnailer.dart';
 import 'package:t_pdf_example/pdf_reader.dart';
 import 'package:than_pkg/than_pkg.dart';
 
@@ -64,7 +65,12 @@ class MyApp extends StatelessWidget {
             if (!await ThanPkg.platform.isStoragePermissionGranted()) {
               await ThanPkg.platform.requestStoragePermission();
             }
-            // ThanPkg.android.app.getAppExternalPath()
+            await TPdfCoreThumbnailer.extractImageAndSave(
+              pageIndex: 1,
+              '/home/thancoder/Documents/test2.pdf',
+              savePath: 'out.png',
+              overrideExistsImage: true,
+            );
           } catch (e) {
             debugPrint(e.toString());
           }

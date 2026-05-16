@@ -1,6 +1,7 @@
 name: t_pdf_core_engine
 description: "High-performance PDF core engine for Dart and Flutter, powered by PDFium via Dart FFI."
 version: 0.0.1
+repository: https://github.com/ThanCoder/t_pdf_core_engine
 
 environment:
   sdk: ^3.11.0

@@ -8,7 +8,25 @@ import 'package:t_pdf_core_engine/t_pdf_core_engine.dart';
 
 import '../t_pdf_core_engine_bindings_generated.dart' as bindings;
 
-enum TImageFormat { jpg, png }
+enum TImageFormat {
+  /// Encode an [image] to the JPEG format.
+  jpg,
+
+  /// Encode an image to the PNG format.
+  png,
+
+  /// Encode an [Image] to the BMP format.
+  bmp,
+
+  /// Encode an [Image] to the CUR format.
+  cur,
+
+  /// Encode an image to the ICO format.
+  ico,
+}
+// void test(){
+//   img.encodeIco(image)
+// }
 
 class TPageSize {
   final double width;
@@ -101,6 +119,12 @@ class TPdfPage {
       finalEncodedBytes = Uint8List.fromList(
         img.encodeJpg(imageObj, quality: quality),
       );
+    } else if (format == TImageFormat.bmp) {
+      finalEncodedBytes = Uint8List.fromList(img.encodeBmp(imageObj));
+    } else if (format == TImageFormat.cur) {
+      finalEncodedBytes = Uint8List.fromList(img.encodeCur(imageObj));
+    } else if (format == TImageFormat.ico) {
+      finalEncodedBytes = Uint8List.fromList(img.encodeIco(imageObj));
     } else {
       // PNG ဆိုရင် အကောင်းဆုံး format အတိုင်း encode လုပ်မယ်
       finalEncodedBytes = Uint8List.fromList(img.encodePng(imageObj));
