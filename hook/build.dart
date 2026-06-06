@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:code_assets/code_assets.dart';
@@ -69,6 +71,8 @@ Future<Uri?> downloadBinaryUri(BuildInput input) async {
     fileUri = input.packageRoot.resolve(
       linuxInputDir.path.join('lib$packageName.so'),
     );
+    // ရှိနေရင် download မလုပ်တော့ဘူး
+    if (File(fileUri.toFilePath()).existsSync()) return fileUri;
     await downloadUrl(fileUrl, fileUri.path);
   }
   // android
